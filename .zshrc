@@ -31,3 +31,15 @@ alias dc="docker-compose"
 traefik-pwd () {
   htpasswd -nb $1 $2 | sed -e s/\\$/\\$\\$/g
 }
+
+dayms() {
+  date -r $(($1 / 1000))
+  }
+
+dayus() {
+  date -r $(($1 / 1000000))
+  }
+
+day() {
+  date -r $1
+}
