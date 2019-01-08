@@ -1,10 +1,14 @@
+
+export ZSH=/home/omnilink/.oh-my-zsh
+ZSH_THEME="omnilink"
+unsetopt inc_append_history
+unsetopt share_history
+source $ZSH/oh-my-zsh.sh
+
 # Env
 
 export PATH=$PATH:~/bin
 export ZSH="/home/omnilink/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
-
-ZSH_THEME="omnilink"
 
 plugins=(
   git
