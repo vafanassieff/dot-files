@@ -28,7 +28,11 @@ alias dc="docker-compose"
 
 ## Functions
 
-traefik-pwd () {
+my-ip() {
+  curl http://www.ip-api.com/json/ | jq
+}
+
+traefik-pwd() {
   htpasswd -nb $1 $2 | sed -e s/\\$/\\$\\$/g
 }
 
