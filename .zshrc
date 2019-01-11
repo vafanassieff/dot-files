@@ -5,14 +5,26 @@ unsetopt inc_append_history
 unsetopt share_history
 source $ZSH/oh-my-zsh.sh
 
-# Env
-
-export PATH=$PATH:~/bin
-export ZSH="/home/omnilink/.oh-my-zsh"
-
 plugins=(
   git
 )
+
+# Env
+
+export MAIL42=vafanass@student.42.fr
+export USER42=vafanass
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export PATH=$PATH:~/bin
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_omnilink'
+export NODE_ENV="dev"
+export DATA_ENV="dev"
+
+source ~/.alias/custon_env
 
 ## Alias
 
@@ -21,10 +33,11 @@ alias ll='ls -la'
 alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias tips="vim ~/nas/tips.md"
-alias btc-log="tail -f /crypto/bitcoin/debug.log"
-alias docker-ip="ocker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'"
+alias docker-ip="docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'"
+alias docker-ls="docker container ls --format='table {{.Names}}\\t{{.ID}}\\{{.Images}}'"
 alias dc="docker-compose"
+
+source ~/.alias/ssh_gcp
 
 ## Functions
 
@@ -46,4 +59,31 @@ dayus() {
 
 day() {
   date -r $1
+}
+
+refresh-gcp () {
+	gcloud compute instances list --format json > ~/.gcp.tmp
+	COUNT=$(cat ~/.gcp.tmp | jq length)
+	echo Got $COUNT Google Cloud Plateform instance
+
+	COUNT=`expr $COUNT - 1`
+	a=0
+	ALL_CMD=""
+
+	while [[ $a -le $COUNT ]]
+	do
+		SSH_CMD=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '"alias ssh-gcp_" + .[$a].name + "=!ssh afa@" + .[$a].networkInterfaces [0].accessConfigs[0].natIP + " -i ~/.ssh/id_omnilink!"' | tr ! \')
+		ALL_CMD="$ALL_CMD$SSH_CMD\n"
+    	a=`expr $a + 1`
+	done
+
+	echo $ALL_CMD > ~/.alias/ssh_gcp
+	echo Source new gcp ssh alias
+	source ~/.alias/ssh_gcp
+	rm ~/.gcp.tmp
+	echo Done √
+}
+
+docker_log_file () {
+  echo "" > $(docker inspect --format='{{.LogPath}}' $1)
 }

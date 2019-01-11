@@ -1,4 +1,7 @@
 nas-dot-file:
+	mkdir -p ${HOME}/.alias
+	touch ${HOME}/.alias/ssh_gcp
+	touch ${HOME}/.alias/custom_env
 	ln -vsf ${PWD}/.zshrc   ${HOME}/.zshrc
 	ln -vsf ${PWD}/.vimrc   ${HOME}/.vimrc
 	ln -vsf ${PWD}/omnilink.zsh-theme  ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
