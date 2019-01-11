@@ -34,7 +34,7 @@ alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias docker-ip="docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'"
-alias docker-ls="docker container ls --format='table {{.Names}}\\t{{.ID}}\\{{.Images}}'"
+alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 
 source ~/.alias/ssh_gcp
