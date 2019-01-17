@@ -89,6 +89,12 @@ refresh-gcp () {
 	echo Done √
 }
 
-docker_log_file () {
-  echo "" > $(docker inspect --format='{{.LogPath}}' $1)
+docker-reset-logf () {
+	if [ -z "$1"];then
+  	echo "" > $(docker inspect --format='{{.LogPath}}' $1)
+	fi
+}
+
+docke-ip () {
+	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 }
