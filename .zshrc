@@ -37,6 +37,10 @@ alias docker-ip="docker ps -q | xargs -n 1 docker inspect --format '{{range .Net
 alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 
+# Stupid Alias
+
+alias vin="vim"
+
 source ~/.alias/ssh_gcp
 
 ## Functions
@@ -62,6 +66,7 @@ day() {
 }
 
 refresh-gcp () {
+	rm -f ~/.gcp.tmp
 	gcloud compute instances list --format json > ~/.gcp.tmp
 	COUNT=$(cat ~/.gcp.tmp | jq length)
 	echo Got $COUNT Google Cloud Plateform instance
@@ -80,7 +85,7 @@ refresh-gcp () {
 	echo $ALL_CMD > ~/.alias/ssh_gcp
 	echo Source new gcp ssh alias
 	source ~/.alias/ssh_gcp
-	rm ~/.gcp.tmp
+	rm -f ~/.gcp.tmp
 	echo Done √
 }
 
