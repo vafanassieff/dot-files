@@ -20,7 +20,6 @@ export PATH=$PATH:$GOPATH/bin
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH=$PATH:~/bin
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_omnilink'
 export NODE_ENV="dev"
 export DATA_ENV="dev"
 
