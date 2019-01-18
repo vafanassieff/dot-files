@@ -23,7 +23,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 export NODE_ENV="dev"
 export DATA_ENV="dev"
 
-if [ -f "~/.alias/custom_env"]; then
+if [ -f "~/.alias/custom_env" ]; then
 	source ~/.alias/custom_env
 fi
 
@@ -43,7 +43,7 @@ alias dc="docker-compose"
 alias vin="vim"
 
 
-if [ -f "~/.alias/ssh_gcp"]; then
+if [ -f "~/.alias/ssh_gcp" ]; then
 	source ~/.alias/ssh_gcp
 fi
 
