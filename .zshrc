@@ -24,7 +24,9 @@ export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_omnilink'
 export NODE_ENV="dev"
 export DATA_ENV="dev"
 
-source ~/.alias/custon_env
+if [ -f "~/.alias/custom_env"]; then
+	source ~/.alias/custom_env
+fi
 
 ## Alias
 
@@ -41,7 +43,10 @@ alias dc="docker-compose"
 
 alias vin="vim"
 
-source ~/.alias/ssh_gcp
+
+if [ -f "~/.alias/ssh_gcp"]; then
+	source ~/.alias/ssh_gcp
+fi
 
 ## Functions
 
