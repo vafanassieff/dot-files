@@ -1,5 +1,5 @@
 
-export ZSH=/home/omnilink/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 unsetopt inc_append_history
 unsetopt share_history
