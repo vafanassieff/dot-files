@@ -1,4 +1,4 @@
-nas-dot-file:
+dot-file:
 	mkdir -p ${HOME}/.alias
 	touch ${HOME}/.alias/ssh_gcp
 	touch ${HOME}/.alias/custom_env
@@ -12,3 +12,8 @@ docker:
 	sudo usermod -aG docker ${USER}
 	sudo systemctl enable docker.service
 	sudo systemctl start docker.service
+
+init:
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+all: dot-file
