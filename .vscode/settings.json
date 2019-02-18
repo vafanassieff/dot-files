@@ -1,0 +1,61 @@
+{
+    "42header.username": "vafanass",
+    "42header.email": "vafanass@student.42.fr",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false,
+    "extensions.ignoreRecommendations": false,
+    "files.insertFinalNewline": true,
+    "editor.rulers": [
+        80
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.statusBar.feedback.visible": false,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+    },
+    "editor.formatOnPaste": true,
+
+    "solidity.linter": "solium",
+    "solidity.soliumRules": {
+        "quotes": ["error", "double"],
+        "indentation": ["error", 2]
+    },
+    "solidity.compileUsingRemoteVersion": "0.4.24+commit.e67f0147.Emscripten.clang",
+    "solidity.compileUsingLocalVersion": "/usr/local/bin/solcjs",
+
+
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintPath": "/path/to/virtualenv/bin/pylint",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "--max-line-length=200",
+        "pylint_django"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.pep8Args": [
+        "--max-line-length=120"
+    ],
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "editor.fontSize": 11,
+}
