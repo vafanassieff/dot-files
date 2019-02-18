@@ -10,8 +10,8 @@ dot-file:
 	source ${HOME}/.zshrc
 
 vim:
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
+	git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized | true
 
 docker:
 	sudo usermod -aG docker ${USER}
