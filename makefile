@@ -13,7 +13,4 @@ docker:
 	sudo systemctl enable docker.service
 	sudo systemctl start docker.service
 
-init:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 all: dot-file
