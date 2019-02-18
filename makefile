@@ -19,3 +19,14 @@ docker:
 	sudo systemctl start docker.service
 
 all: dot-file vim
+
+clean-dot-file:
+	rm -rf ${HOME}/.alias
+	rm -rf ${PWD}/.zshrc ${HOME}/.zshrc
+	rm -rf ${PWD}/.vimrc ${HOME}/.vimrc
+	rm -rf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
+	rm -rf ${HOME}/.docker
+
+clean: clean-dot-file
+
+re: clean all
