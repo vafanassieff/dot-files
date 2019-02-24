@@ -8,6 +8,10 @@ dot-file:
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
 
+git:
+	git config --global user.name "Victor Afanassieff"
+	git config --global user.email "victor@afanassieff.com"
+
 vim:
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
 	git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized | true
