@@ -7,6 +7,7 @@ dot-file:
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
+	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
 
 git:
 	git config --global user.name "Victor Afanassieff"
