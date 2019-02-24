@@ -18,12 +18,16 @@ git:
 	ln -vsf ${HOME}/goinfre/VirtualBox\ Vms ${HOME}/VirtualBox\ VMs
 	mkdir -p ${HOME}/goinfre/docker/com.docker.docker
 	ln -vsf ${HOME}/goinfre/docker/com.docker.docker ${HOME}/Library/Containers/com.docker.docker
+	mkdir -p ${HOME}/goinfre/docker/docker-machine
+	ln -vsf ${HOME}/goinfre/docker/docker-machine ${HOME}/.docker/machine
 
 42-clean:
 	rm -rf ${HOME}/goinfre/VirtualBox\ Vms
 	rm -rf ${HOME}/VirtualBox\ VMs
 	rm -rf ${HOME}/goinfre/docker/com.docker.docker
 	rm -rf ${HOME}/Library/Containers/com.docker.docker
+	rm -rf ${HOME}/.docker/machine
+	rm -rf ${HOME}/goinfre/docker/docker-machine
 
 vim:
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
