@@ -7,7 +7,6 @@ dot-file:
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
-	source ${HOME}/.zshrc
 
 vim:
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
@@ -22,9 +21,9 @@ all: dot-file vim
 
 clean-dot-file:
 	rm -rf ${HOME}/.alias
-	rm -rf ${PWD}/.zshrc ${HOME}/.zshrc
-	rm -rf ${PWD}/.vimrc ${HOME}/.vimrc
-	rm -rf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
+	rm -rf ${HOME}/.zshrc
+	rm -rf ${HOME}/.vimrc
+	rm -rf ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	rm -rf ${HOME}/.docker
 
 clean: clean-dot-file
