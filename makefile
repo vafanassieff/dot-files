@@ -12,6 +12,18 @@ git:
 	git config --global user.name "Victor Afanassieff"
 	git config --global user.email "victor@afanassieff.com"
 
+42:
+	mkdir -p ${HOME}/goinfre/VirtualBox\ Vms
+	ln -vsf ${HOME}/goinfre/VirtualBox\ Vms ${HOME}/VirtualBox\ VMs
+	mkdir -p ${HOME}/goinfre/docker/com.docker.docker
+	ln -vsf ${HOME}/goinfre/docker/com.docker.docker ${HOME}/Library/Containers/com.docker.docker
+
+42-clean:
+	rm -rf ${HOME}/goinfre/VirtualBox\ Vms
+	rm -rf ${HOME}/VirtualBox\ VMs
+	rm -rf ${HOME}/goinfre/docker/com.docker.docker
+	rm -rf ${HOME}/Library/Containers/com.docker.docker
+
 vim:
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
 	git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized | true
