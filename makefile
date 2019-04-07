@@ -1,3 +1,21 @@
+OS 		:=
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	OS += LINUX
+endif
+ifeq ($(UNAME_S),Darwin)
+	OS += OSX
+endif
+	UNAME_P := $(shell uname -p)
+
+all: git
+
+zsh:
+	if [ $(OS) == "OSX" ]; then brew install zsh; fi;
+	if [ $(OS) == "LINUX" ]; then sudo apt-getinstall -y zsh; fi;
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 dot-file:
 	mkdir -p ${HOME}/.alias
 	touch ${HOME}/.alias/ssh_gcp
@@ -7,12 +25,14 @@ dot-file:
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
-	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
+	# Not all computer are mac quick hack to avoid error
+	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json | true
 
 git:
 	git config --global user.name "Victor Afanassieff"
 	git config --global user.email "victor@afanassieff.com"
 
+# Config specific for 42 school Imac
 42:
 	mkdir -p ${HOME}/goinfre/VirtualBox\ Vms
 	ln -vsf ${HOME}/goinfre/VirtualBox\ Vms ${HOME}/VirtualBox\ VMs
@@ -21,6 +41,7 @@ git:
 	mkdir -p ${HOME}/goinfre/docker/docker-machine
 	ln -vsf ${HOME}/goinfre/docker/docker-machine ${HOME}/.docker/machine
 
+# Clean the current 42 imac
 42-clean:
 	rm -rf ${HOME}/goinfre/VirtualBox\ Vms
 	rm -rf ${HOME}/VirtualBox\ VMs
@@ -38,8 +59,6 @@ docker:
 	sudo systemctl enable docker.service
 	sudo systemctl start docker.service
 
-all: dot-file vim
-
 clean-dot-file:
 	rm -rf ${HOME}/.alias
 	rm -rf ${HOME}/.zshrc
@@ -51,5 +70,5 @@ clean: clean-dot-file
 
 re: clean all
 
-ssh-server:
+ssh-key:
 	echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuKqJf8l+LQTl0NpSBuT9Ln7b7LRH4zxAJRgP9BUPpG victor@afanassieff.com" >> ~/.ssh/authorized_keys
