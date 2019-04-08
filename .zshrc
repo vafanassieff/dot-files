@@ -82,6 +82,7 @@ refresh-gcp () {
 
 	while [[ $a -le $COUNT ]]
 	do
+		echo "Creating alias for" $(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].name')
 		SSH_CMD=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '"alias ssh-gcp_" + .[$a].name + "=!ssh afa@" + .[$a].networkInterfaces [0].accessConfigs[0].natIP + " -i ~/.ssh/id_omnilink!"' | tr ! \')
 		ALL_CMD="$ALL_CMD$SSH_CMD\n"
     	a=`expr $a + 1`

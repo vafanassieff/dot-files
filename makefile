@@ -9,7 +9,16 @@ ifeq ($(UNAME_S),Darwin)
 endif
 	UNAME_P := $(shell uname -p)
 
-all: git
+all: zsh git vim dot-files
+
+re: clean all
+
+clean:
+	rm -rf ${HOME}/.alias
+	rm -rf ${HOME}/.zshrc
+	rm -rf ${HOME}/.vimrc
+	rm -rf ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
+	rm -rf ${HOME}/.docker
 
 zsh:
 	if [ $(OS) == "OSX" ]; then brew install zsh; fi;
@@ -27,10 +36,7 @@ dot-file:
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
 	# Not all computer are mac quick hack to avoid error
 	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json | true
-
-git:
-	git config --global user.name "Victor Afanassieff"
-	git config --global user.email "victor@afanassieff.com"
+	ln -vsf ${PWD}/.gitconfig ${HOME}/.gitconfig
 
 # Config specific for 42 school Imac
 42:
@@ -58,17 +64,6 @@ docker:
 	sudo usermod -aG docker ${USER}
 	sudo systemctl enable docker.service
 	sudo systemctl start docker.service
-
-clean-dot-file:
-	rm -rf ${HOME}/.alias
-	rm -rf ${HOME}/.zshrc
-	rm -rf ${HOME}/.vimrc
-	rm -rf ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
-	rm -rf ${HOME}/.docker
-
-clean: clean-dot-file
-
-re: clean all
 
 ssh-key:
 	echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuKqJf8l+LQTl0NpSBuT9Ln7b7LRH4zxAJRgP9BUPpG victor@afanassieff.com" >> ~/.ssh/authorized_keys
