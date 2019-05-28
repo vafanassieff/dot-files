@@ -11,19 +11,11 @@
     ],
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.iconTheme": "vscode-icons",
     "workbench.statusBar.feedback.visible": false,
     "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
+        "suppressLineUncommittedWarning": true,
         "suppressShowKeyBindingsNotice": true
     },
-    "vsicons.dontShowNewVersionMessage": true,
 
     "[javascript]": {
         "editor.tabSize": 2
@@ -58,4 +50,5 @@
     ],
     "javascript.updateImportsOnFileMove.enabled": "never",
     "editor.fontSize": 11,
+    "workbench.iconTheme": "vscode-icons"
 }

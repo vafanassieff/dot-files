@@ -22,10 +22,8 @@ export PATH=$PATH:~/bin
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 export NODE_ENV="dev"
 export DATA_ENV="dev"
-
-if [ -f "~/.alias/custom_env" ]; then
-	source ~/.alias/custom_env
-fi
+export ENV="dev"
+export HOMEBREW_NO_ANALYTICS=1
 
 ## Alias
 
@@ -44,8 +42,12 @@ alias dc-dev="docker-compose -f docker-compose.dev.yml"
 alias vin="vim"
 
 
-if [ -f "~/.alias/ssh_gcp" ]; then
-	source ~/.alias/ssh_gcp
+if [ -f "$HOME/.alias/ssh_gcp" ]; then
+	source $HOME/.alias/ssh_gcp
+fi
+
+if [ -f "$HOME/.alias/custom_env" ]; then
+	source $HOME/.alias/custom_env
 fi
 
 ## Functions
