@@ -5,9 +5,7 @@ unsetopt inc_append_history
 unsetopt share_history
 source $ZSH/oh-my-zsh.sh
 
-plugins=(
-  git
-)
+plugins=(git docker encode64 brew)
 
 # Env
 
