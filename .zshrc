@@ -23,6 +23,8 @@ export DATA_ENV="dev"
 export ENV="dev"
 export HOMEBREW_NO_ANALYTICS=1
 
+export COMPOSE_IGNORE_ORPHANS=True
+
 ## Alias
 
 alias c='clear'
