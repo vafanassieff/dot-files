@@ -1,8 +1,6 @@
 
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
-unsetopt inc_append_history
-unsetopt share_history
 source $ZSH/oh-my-zsh.sh
 
 plugins=(git docker encode64 brew)
@@ -22,8 +20,10 @@ export NODE_ENV="dev"
 export DATA_ENV="dev"
 export ENV="dev"
 export HOMEBREW_NO_ANALYTICS=1
-
 export COMPOSE_IGNORE_ORPHANS=True
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 ## Alias
 
@@ -40,7 +40,7 @@ alias dc-dev="docker-compose -f docker-compose.dev.yml"
 # Stupid Alias
 
 alias vin="vim"
-
+alias docket="docker"
 
 if [ -f "$HOME/.alias/ssh_gcp" ]; then
 	source $HOME/.alias/ssh_gcp
@@ -106,3 +106,20 @@ docker-reset-logf () {
 docke-ip () {
 	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 }
+
+ctop () {
+	docker run --rm -ti \
+  	--name=ctop \
+  	--volume /var/run/docker.sock:/var/run/docker.sock:ro \
+  	quay.io/vektorlab/ctop:latest -s cpu -a
+}
+
+function dex-fn {
+	docker exec -it $1 /bin/bash
+}
+
+unsetopt share_history
+setopt no_share_history
+unsetopt SHARE_HISTORY
+unsetopt inc_append_history
+unsetopt share_history
