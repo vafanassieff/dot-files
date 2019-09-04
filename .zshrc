@@ -36,6 +36,8 @@ alias docker-ip="docker ps -q | xargs -n 1 docker inspect --format '{{range .Net
 alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
+alias gpush="git push"
+alias transmission-remote="docker exec -it transmission transmission-remote"
 
 # Stupid Alias
 
@@ -51,6 +53,10 @@ if [ -f "$HOME/.alias/custom_env" ]; then
 fi
 
 ## Functions
+
+gcm() {
+	git commit -m "$1"
+}
 
 my-ip() {
   curl http://www.ip-api.com/json/ | jq
