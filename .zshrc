@@ -48,6 +48,10 @@ if [ -f "$HOME/.alias/ssh_gcp" ]; then
 	source $HOME/.alias/ssh_gcp
 fi
 
+if [ -f "$HOME/.alias/ssh_belem_gcp" ]; then
+	source $HOME/.alias/ssh_belem_gcp
+fi
+
 if [ -f "$HOME/.alias/custom_env" ]; then
 	source $HOME/.alias/custom_env
 fi
@@ -78,7 +82,7 @@ day() {
   date -r $1
 }
 
-refresh-gcp () {
+functionrefresh-gcp () {
 	rm -f ~/.gcp.tmp
 	gcloud compute instances list --format json > ~/.gcp.tmp
 	COUNT=$(cat ~/.gcp.tmp | jq length)
