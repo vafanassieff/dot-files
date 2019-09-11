@@ -38,6 +38,7 @@ alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
 alias gpush="git push"
 alias transmission-remote="docker exec -it transmission transmission-remote"
+alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
 
 # Stupid Alias
 
