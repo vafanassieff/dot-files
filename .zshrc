@@ -22,6 +22,15 @@ export ENV="dev"
 export HOMEBREW_NO_ANALYTICS=1
 export COMPOSE_IGNORE_ORPHANS=True
 
+# Manpage color
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -31,11 +40,30 @@ alias ll='ls -la'
 alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias gpush="git push"
+alias git-update-submodule="git submodule foreach git pull origin master"
 alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
+alias rmdir="rm -r"
+alias port='netstat -tulanp'
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
+
+# Git related
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gd='git diff'
+alias gb='git branch'
+alias gl='git log'
+alias gsb='git show-branch'
+alias gco='git checkout'
+alias gg='git grep'
+alias gk='gitk --all'
+alias gr='git rebase'
+alias gri='git rebase --interactive'
+alias gcp='git cherry-pick'
+alias grm='git rm'
+alias gp="git push"
 
 # Docker Alias
-alias docker-ip="docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
@@ -62,6 +90,18 @@ if [ -f "$HOME/.alias/custom_env" ]; then
 fi
 
 ## Functions
+function cdls() {
+	cd "$1";
+	ls;
+}
+
+function gen-pwd {
+	echo $1
+	if [ -n "$1" ];then
+		SIZE=$1
+	fi
+	openssl rand -base64 32 | tr -d "=+/" | cut -c1-${SIZE}
+}
 
 function gcm() {
 	git commit -m "$1"
@@ -112,6 +152,10 @@ function refresh-gcp () {
 	echo Done √
 }
 
+function docker-ip {
+	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+}
+
 function docker-reset-logf () {
 	if [ -z "$1"];then
   	echo "" > $(docker inspect --format='{{.LogPath}}' $1)
@@ -136,6 +180,27 @@ function delete-osx-useless {
 		find . -name '.DS_Store' -type f -delete
 	fi
 }
+
+function extract () {
+   if [ -f $1 ] ; then
+       case $1 in
+           *.tar.bz2)   tar xvjf $1    ;;
+           *.tar.gz)    tar xvzf $1    ;;
+           *.bz2)       bunzip2 $1     ;;
+           *.rar)       unrar x $1       ;;
+           *.gz)        gunzip $1      ;;
+           *.tar)       tar xvf $1     ;;
+           *.tbz2)      tar xvjf $1    ;;
+           *.tgz)       tar xvzf $1    ;;
+           *.zip)       unzip $1       ;;
+           *.Z)         uncompress $1  ;;
+           *.7z)        7z x $1        ;;
+           *)           echo "don't know how to extract '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+ }
 
 unsetopt share_history
 setopt no_share_history
