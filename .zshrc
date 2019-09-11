@@ -25,23 +25,27 @@ export COMPOSE_IGNORE_ORPHANS=True
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-## Alias
-
+# Alias
 alias c='clear'
 alias ll='ls -la'
 alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias docker-ip="docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'"
+alias gpush="git push"
+alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
+
+# Docker Alias
+alias docker-ip="docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
-alias gpush="git push"
+alias nextcloud-scan="docker exec --user www-data -it nextcloud php occ files:scan --all"
+alias lncli-testnet="docker exec --user lnd-testnet-it lnd lncli --network testnet"
+alias lncli="docker exec --user lnd -it lnd lncli"
 alias transmission-remote="docker exec -it transmission transmission-remote"
-alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
+alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest -s cpu -a"
 
 # Stupid Alias
-
 alias vin="vim"
 alias docket="docker"
 
@@ -114,17 +118,6 @@ function docker-reset-logf () {
 	fi
 }
 
-function docke-ip () {
-	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
-}
-
-function ctop () {
-	docker run --rm -ti \
-  	--name=ctop \
-  	--volume /var/run/docker.sock:/var/run/docker.sock:ro \
-  	quay.io/vektorlab/ctop:latest -s cpu -a
-}
-
 function dex-fn {
 	docker exec -it $1 /bin/bash
 }
@@ -135,10 +128,18 @@ function gdrive_download () {
   rm -rf /tmp/cookies.txt
 }
 
+function delete-osx-useless {
+	if [$(uname) != "Darwin"]; then
+		find . -name '._*' -type f
+		find . -name '._*' -type f -delete
+		find . -name '.DS_Store' -type f
+		find . -name '.DS_Store' -type f -delete
+	fi
+}
+
 unsetopt share_history
 setopt no_share_history
 unsetopt SHARE_HISTORY
 unsetopt inc_append_history
-unsetopt share_history
 
 source ~/.iterm2_shell_integration.zsh
