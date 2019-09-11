@@ -37,6 +37,7 @@ dot-file:
 	# Not all computer are mac quick hack to avoid error
 	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json | true
 	ln -vsf ${PWD}/.gitconfig ${HOME}/.gitconfig
+	ln -vsf ${PWD}/.terraformrc ${HOME}/.terraformrc
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 
 # Config specific for 42 school Imac
