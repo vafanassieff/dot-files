@@ -95,6 +95,10 @@ function cdls() {
 	ls;
 }
 
+function b64decode {
+	echo $1 | base64 --decode
+}
+
 function gen-pwd {
 	echo $1
 	if [ -n "$1" ];then
@@ -103,7 +107,7 @@ function gen-pwd {
 	openssl rand -base64 32 | tr -d "=+/" | cut -c1-${SIZE}
 }
 
-function gcm() {
+function gitm() {
 	git commit -m "$1"
 }
 
