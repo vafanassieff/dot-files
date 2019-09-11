@@ -59,31 +59,31 @@ fi
 
 ## Functions
 
-gcm() {
+function gcm() {
 	git commit -m "$1"
 }
 
-my-ip() {
+function my-ip() {
   curl http://www.ip-api.com/json/ | jq
 }
 
-traefik-pwd() {
+function traefik-pwd() {
   htpasswd -nb $1 $2 | sed -e s/\\$/\\$\\$/g
 }
 
-dayms() {
+function dayms() {
   date -r $(($1 / 1000))
   }
 
-dayus() {
+function dayus() {
   date -r $(($1 / 1000000))
   }
 
-day() {
+function day() {
   date -r $1
 }
 
-functionrefresh-gcp () {
+function refresh-gcp () {
 	rm -f ~/.gcp.tmp
 	gcloud compute instances list --format json > ~/.gcp.tmp
 	COUNT=$(cat ~/.gcp.tmp | jq length)
@@ -108,17 +108,17 @@ functionrefresh-gcp () {
 	echo Done √
 }
 
-docker-reset-logf () {
+function docker-reset-logf () {
 	if [ -z "$1"];then
   	echo "" > $(docker inspect --format='{{.LogPath}}' $1)
 	fi
 }
 
-docke-ip () {
+function docke-ip () {
 	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 }
 
-ctop () {
+function ctop () {
 	docker run --rm -ti \
   	--name=ctop \
   	--volume /var/run/docker.sock:/var/run/docker.sock:ro \
