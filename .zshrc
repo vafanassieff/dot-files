@@ -41,6 +41,7 @@ alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias git-update-submodule="git submodule foreach git pull origin master"
+alias tf="terraform"
 alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
 alias rmdir="rm -r"
 alias port='netstat -tulanp'
