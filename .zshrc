@@ -69,7 +69,7 @@ alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Ima
 alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
 alias nextcloud-scan="docker exec --user www-data -it nextcloud php occ files:scan --all"
-alias lncli-testnet="docker exec --user lnd-testnet-it lnd lncli --network testnet"
+alias lncli-testnet="docker exec --user lnd -it lnd lncli --network testnet"
 alias lncli="docker exec --user lnd -it lnd lncli"
 alias transmission-remote="docker exec -it transmission transmission-remote"
 alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest -s cpu -a"
