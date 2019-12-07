@@ -46,6 +46,8 @@ alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd
 alias rmdir="rm -r"
 alias port='netstat -tulanp'
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
+alias trlogsonarr="docker exec -it sonarr tail -f /app/transmission.log"
+alias trlogradarr="docker exec -it radarr tail -f /app/transmission.log"
 
 # Git related
 alias gs='git status'
@@ -208,9 +210,14 @@ function extract () {
    fi
  }
 
+function rm-ssh-host () {
+	sed -i '' -e "$1d" ~/.ssh/known_hosts
+}
+
 unsetopt share_history
 setopt no_share_history
 unsetopt SHARE_HISTORY
 unsetopt inc_append_history
 
 source ~/.iterm2_shell_integration.zsh
+export PATH="/usr/local/opt/qt/bin:$PATH"

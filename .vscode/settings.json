@@ -35,7 +35,7 @@
     "solidity.compileUsingLocalVersion": "/usr/local/bin/solcjs",
 
 
-    "python.linting.pep8Enabled": true,
+    "python.linting.pycodestyleEnabled": true,
     "python.linting.pylintPath": "/path/to/virtualenv/bin/pylint",
     "python.linting.pylintArgs": [
         "--load-plugins",
@@ -43,7 +43,7 @@
         "pylint_django"
     ],
     "python.linting.pylintEnabled": true,
-    "python.linting.pep8Args": [
+    "python.linting.pycodestyleArgs": [
         "--max-line-length=120"
     ],
     "javascript.updateImportsOnFileMove.enabled": "never",
@@ -53,5 +53,23 @@
     "editor.formatOnPaste": true,
     "[vue]": {
         "editor.tabSize": 2
-    }
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "terraform.indexing": {
+        "enabled": true,
+        "liveIndexing": false,
+        "delay": 500,
+        "exclude": [
+            ".terraform/**/*",
+            "**/.terraform/**/*"
+        ]
+    },
+    "terraform.languageServer": {
+        "enabled": false,
+        "args": []
+    },
+    "[terraform]": {
+        
+    },
+    "gslang.author": "omnilink"
 }
