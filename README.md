@@ -113,3 +113,12 @@ Disk Inventory X
 ```
 http://www.derlien.com/downloads/index.html
 ```
+
+
+## Cool stuff
+
+https://github.com/samuelmeuli/tmignore
+
+
+Exclude node_modules from timemachine
+find `pwd` -name 'node_modules' -prune -type d -exec tmutil addexclusion {} \; -exec tmutil isexcluded {} \;

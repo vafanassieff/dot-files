@@ -80,6 +80,7 @@ alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/r
 # Stupid Alias
 alias vin="vim"
 alias docket="docker"
+alias giut="git"
 
 if [ -f "$HOME/.alias/ssh_gcp" ]; then
 	source $HOME/.alias/ssh_gcp
