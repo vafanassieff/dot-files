@@ -48,7 +48,7 @@
     ],
     "javascript.updateImportsOnFileMove.enabled": "never",
     "editor.fontSize": 11,
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "C_Cpp.updateChannel": "Insiders",
     "editor.formatOnPaste": true,
     "[vue]": {
