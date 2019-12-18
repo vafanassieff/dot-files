@@ -136,12 +136,9 @@ function day() {
   date -r $1
 }
 
-function refresh-gcp () {
-	rm -f ~/.gcp.tmp
-	gcloud compute instances list --format json > ~/.gcp.tmp
+function get-gcloud-ssh-alias () {
+	gcloud compute --project $1 instances list --format json > ~/.gcp.tmp
 	COUNT=$(cat ~/.gcp.tmp | jq length)
-	echo Got $COUNT Google Cloud Plateform instance
-
 	COUNT=`expr $COUNT - 1`
 	a=0
 	ALL_CMD=""
@@ -151,10 +148,16 @@ function refresh-gcp () {
 		echo "Creating alias for" $(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].name')
 		SSH_CMD=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '"alias ssh-gcp_" + .[$a].name + "=!ssh afa@" + .[$a].networkInterfaces [0].accessConfigs[0].natIP + " -i ~/.ssh/id_omnilink!"' | tr ! \')
 		ALL_CMD="$ALL_CMD$SSH_CMD\n"
-    	a=`expr $a + 1`
+		a=`expr $a + 1`
 	done
 
 	echo $ALL_CMD > ~/.alias/ssh_gcp
+}
+
+function gcloud-ssh-alias () {
+	rm -f ~/.gcp.tmp
+	get-gcloud-ssh-alias "ito-infra"
+	get-gcloud-ssh-alias "market-data-261512"
 	echo Source new gcp ssh alias
 	source ~/.alias/ssh_gcp
 	rm -f ~/.gcp.tmp
