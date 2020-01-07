@@ -145,7 +145,9 @@ function get-gcloud-ssh-alias () {
 
 	while [[ $a -le $COUNT ]]
 	do
-		echo "Creating alias for" $(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].name')
+		NAME=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].name')
+		IP=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].networkInterfaces [0].accessConfigs[0].natIP')
+		echo "Creating alias for" $NAME
 		SSH_CMD=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '"alias ssh-gcp_" + .[$a].name + "=!ssh afa@" + .[$a].networkInterfaces [0].accessConfigs[0].natIP + " -i ~/.ssh/id_omnilink!"' | tr ! \')
 		ALL_CMD="$ALL_CMD$SSH_CMD\n"
 		a=`expr $a + 1`
@@ -158,10 +160,38 @@ function gcloud-ssh-alias () {
 	rm -f ~/.gcp.tmp
 	get-gcloud-ssh-alias "ito-infra"
 	get-gcloud-ssh-alias "market-data-261512"
-	echo Source new gcp ssh alias
+	echo "Source new gcp ssh alias"
 	source ~/.alias/ssh_gcp
 	rm -f ~/.gcp.tmp
 	echo Done √
+}
+
+function aws-ssh-alias () {
+	get-aws-ssh-alias "eu-west-3"
+	get-aws-ssh-alias "us-east-1"
+	echo Done √
+}
+
+function get-aws-ssh-alias () {
+	REGION=$1
+	echo "Region is ${REGION}"
+	AWS_DATA=$(aws ec2 describe-instances  --region ${REGION} --query 'Reservations[].Instances[].[Tags[?Key==`Name`] | [0].Value, PublicIpAddress]')
+	COUNT=$(echo $AWS_DATA | jq length)
+	COUNT=`expr $COUNT - 1`
+	a=0
+	ALL_CMD=""
+
+	while [[ $a -le $COUNT ]]
+	do
+		NAME=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][0]')
+		IP=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][1]')
+		echo "Creating alias for" $NAME
+		SSH_CMD="alias ssh-aws-$REGION-$NAME='ssh ubuntu@$IP -i ~/.ssh/aws/ito-${REGION}'"
+		ALL_CMD="$ALL_CMD$SSH_CMD\n"
+		a=`expr $a + 1`
+	done
+	echo $ALL_CMD > ~/.alias/ssh_aws_$REGION
+	source ~/.alias/ssh_aws_$REGION
 }
 
 function docker-ip {
