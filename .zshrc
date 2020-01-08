@@ -153,15 +153,14 @@ function get-gcloud-ssh-alias () {
 		a=`expr $a + 1`
 	done
 
-	echo $ALL_CMD > ~/.alias/ssh_gcp
+	echo $ALL_CMD > ~/.alias/ssh_gcp_$1
+	source ~/.alias/ssh_gcp_$1
 }
 
 function gcloud-ssh-alias () {
 	rm -f ~/.gcp.tmp
 	get-gcloud-ssh-alias "ito-infra"
 	get-gcloud-ssh-alias "market-data-261512"
-	echo "Source new gcp ssh alias"
-	source ~/.alias/ssh_gcp
 	rm -f ~/.gcp.tmp
 	echo Done √
 }
