@@ -82,17 +82,7 @@ alias vin="vim"
 alias docket="docker"
 alias giut="git"
 
-if [ -f "$HOME/.alias/ssh_gcp" ]; then
-	source $HOME/.alias/ssh_gcp
-fi
-
-if [ -f "$HOME/.alias/ssh_belem_gcp" ]; then
-	source $HOME/.alias/ssh_belem_gcp
-fi
-
-if [ -f "$HOME/.alias/custom_env" ]; then
-	source $HOME/.alias/custom_env
-fi
+for f in ~/.alias/*; do source $f; done
 
 ## Functions
 function cdls() {
