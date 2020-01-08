@@ -185,9 +185,11 @@ function get-aws-ssh-alias () {
 	do
 		NAME=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][0]')
 		IP=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][1]')
-		echo "Creating alias for" $NAME
-		SSH_CMD="alias ssh-aws-$REGION-$NAME='ssh ubuntu@$IP -i ~/.ssh/aws/ito-${REGION}'"
-		ALL_CMD="$ALL_CMD$SSH_CMD\n"
+		if [[ ! $IP = "null" ]]; then 
+			echo "Creating alias for" $NAME
+			SSH_CMD="alias ssh-aws-$REGION-$NAME='ssh ubuntu@$IP -i ~/.ssh/aws/ito-${REGION}'"
+			ALL_CMD="$ALL_CMD$SSH_CMD\n"
+		fi
 		a=`expr $a + 1`
 	done
 	echo $ALL_CMD > ~/.alias/ssh_aws_$REGION
