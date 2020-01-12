@@ -3,10 +3,11 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 source $ZSH/oh-my-zsh.sh
 
+source /Users/omnilink/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
 plugins=(git docker encode64 brew)
 
 # Env
-
 export MAIL42=vafanass@student.42.fr
 export USER42=vafanass
 
@@ -85,6 +86,10 @@ alias giut="git"
 for f in ~/.alias/*; do source $f; done
 
 ## Functions
+function stream-twitch() {
+	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" --hls-segment-threads  $1 best
+}
+
 function cdls() {
 	cd "$1";
 	ls;
