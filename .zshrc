@@ -87,7 +87,8 @@ for f in ~/.alias/*; do source $f; done
 
 ## Functions
 function stream-twitch() {
-	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" --hls-segment-threads  $1 best
+	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" \
+	--hls-segment-threads 2 https://www.twitch.tv/$1 best
 }
 
 function cdls() {
