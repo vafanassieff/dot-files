@@ -19,13 +19,16 @@ clean:
 	rm -rf ${HOME}/.vimrc
 	rm -rf ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	rm -rf ${HOME}/.docker
+	rm -rf ${HOME}/.gitconfig
+	rm -rf ${HOME}/.terraformrc
+	rm -rf ${HOME}/.vscode
 
 zsh:
 	if [ $(OS) == "OSX" ]; then brew install zsh; fi;
 	if [ $(OS) == "LINUX" ]; then sudo apt-getinstall -y zsh; fi;
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-dot-file:
+osx:
 	mkdir -p ${HOME}/.alias
 	touch ${HOME}/.alias/ssh_gcp
 	touch ${HOME}/.alias/custom_env
@@ -34,9 +37,16 @@ dot-file:
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
-	# Not all computer are mac quick hack to avoid error
-	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json | true
+	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
 	ln -vsf ${PWD}/.gitconfig ${HOME}/.gitconfig
+	ln -vsf ${PWD}/.terraformrc ${HOME}/.terraformrc
+	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+
+unix:
+	mkdir -p ${HOME}/.alias
+	ln -vsf ${PWD}/.zshrc ${HOME}/.zshrc
+	ln -vsf ${PWD}/.vimrc ${HOME}/.vimrc
+	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	ln -vsf ${PWD}/.terraformrc ${HOME}/.terraformrc
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 

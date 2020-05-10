@@ -2,8 +2,7 @@
     "42header.username": "vafanass",
     "42header.email": "vafanass@student.42.fr",
     "workbench.colorTheme": "Monokai Dimmed",
-    "window.zoomLevel": 0,
-    "editor.minimap.enabled": false,
+    "window.zoomLevel": -1,
     "extensions.ignoreRecommendations": false,
     "files.insertFinalNewline": true,
     "editor.rulers": [
@@ -71,5 +70,7 @@
     "[terraform]": {
         
     },
-    "gslang.author": "omnilink"
+    "gslang.author": "omnilink",
+    "editor.minimap.enabled": false,
+    "diffEditor.ignoreTrimWhitespace": false
 }
