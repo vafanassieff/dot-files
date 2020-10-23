@@ -17,9 +17,7 @@ export PATH=$PATH:$GOPATH/bin
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH=$PATH:~/bin
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-export NODE_ENV="dev"
-export DATA_ENV="dev"
-export ENV="dev"
+export PATH="$HOME/.cargo/bin:$PATH"
 export HOMEBREW_NO_ANALYTICS=1
 export COMPOSE_IGNORE_ORPHANS=True
 
@@ -86,6 +84,10 @@ alias giut="git"
 for f in ~/.alias/*; do source $f; done
 
 ## Functions
+function clear_history {
+	local HISTSIZE=0;
+}
+
 function stream-twitch() {
 	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" \
 	--hls-segment-threads 2 https://www.twitch.tv/$1 best
@@ -252,3 +254,7 @@ unsetopt inc_append_history
 
 source ~/.iterm2_shell_integration.zsh
 export PATH="/usr/local/opt/qt/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/ruby@2.6/bin:$PATH"

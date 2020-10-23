@@ -72,5 +72,10 @@
     },
     "gslang.author": "omnilink",
     "editor.minimap.enabled": false,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[css]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+    },
+    "workbench.enableExperiments": false
 }

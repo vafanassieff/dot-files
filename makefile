@@ -9,7 +9,7 @@ ifeq ($(UNAME_S),Darwin)
 endif
 	UNAME_P := $(shell uname -p)
 
-all: vim dot-file
+all: vim osx
 
 re: clean all
 
