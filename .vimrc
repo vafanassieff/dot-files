@@ -16,8 +16,7 @@ call vundle#end()
 filetype plugin indent on
 
 syntax enable
-set background=dark
-colorscheme solarized
+colorscheme monokai
 set number
 
 set cursorline

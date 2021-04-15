@@ -28,12 +28,17 @@ zsh:
 	if [ $(OS) == "LINUX" ]; then sudo apt-getinstall -y zsh; fi;
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+vim:
+	mkdir -p ${HOME}/.vim
+	ln -vsf ${PWD}/.vimrc ${HOME}/.vimrc
+	ln -vsf ${PWD}/.vim/colors ${HOME}/.vim/colors
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | exit 0
+
 osx:
 	mkdir -p ${HOME}/.alias
 	touch ${HOME}/.alias/ssh_gcp
 	touch ${HOME}/.alias/custom_env
 	ln -vsf ${PWD}/.zshrc ${HOME}/.zshrc
-	ln -vsf ${PWD}/.vimrc ${HOME}/.vimrc
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	mkdir -p ${HOME}/.docker
 	ln -vsf  ${PWD}/.docker/config.json ${HOME}/.docker/config.json
@@ -45,7 +50,6 @@ osx:
 unix:
 	mkdir -p ${HOME}/.alias
 	ln -vsf ${PWD}/.zshrc ${HOME}/.zshrc
-	ln -vsf ${PWD}/.vimrc ${HOME}/.vimrc
 	ln -vsf ${PWD}/omnilink.zsh-theme ${HOME}/.oh-my-zsh/themes/omnilink.zsh-theme
 	ln -vsf ${PWD}/.terraformrc ${HOME}/.terraformrc
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
@@ -67,10 +71,6 @@ unix:
 	rm -rf ${HOME}/Library/Containers/com.docker.docker
 	rm -rf ${HOME}/.docker/machine
 	rm -rf ${HOME}/goinfre/docker/docker-machine
-
-vim:
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
-	git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized | true
 
 docker:
 	sudo usermod -aG docker ${USER}
