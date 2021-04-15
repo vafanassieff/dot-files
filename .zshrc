@@ -3,8 +3,6 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 source $ZSH/oh-my-zsh.sh
 
-source /Users/omnilink/Library/Preferences/org.dystroy.broot/launcher/bash/br
-
 plugins=(git docker encode64 brew)
 
 # Env
