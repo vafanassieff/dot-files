@@ -43,8 +43,7 @@ alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd
 alias rmdir="rm -r"
 alias port='netstat -tulanp'
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
-alias trlogsonarr="docker exec -it sonarr tail -f /app/transmission.log"
-alias trlogradarr="docker exec -it radarr tail -f /app/transmission.log"
+alias sshpwd="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 
 # Git related
 alias gs='git status'
