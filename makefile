@@ -35,6 +35,7 @@ osx: common
 	ln -vsf ${PWD}/.gitconfig ${HOME}/.gitconfig
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 	ln -vsf ${PWD}/.vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
+	ln -vsf ${PWD}/os/osx/.gitconfig ${HOME}/.gitconfig
 
 linux: common
 	ln -vsf ${PWD}/os/linux/.gitconfig ${HOME}/.gitconfig

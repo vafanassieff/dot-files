@@ -20,6 +20,7 @@
 [user]
         name = Victor Afanassieff
         email = victor@afanassieff.com
+	signingkey = 72C20E245B3DB421
 [credential]
         helper = osxkeychain
 [http]
@@ -29,3 +30,7 @@
 
 [help]
 	autocorrect = 1
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
