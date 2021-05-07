@@ -70,6 +70,7 @@ alias lncli-testnet="docker exec --user lnd -it lnd_testnet lncli --network test
 alias lncli="docker exec --user lnd -it lnd lncli"
 alias transmission-remote="docker exec -it transmission transmission-remote"
 alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest -s cpu -a"
+alias docker-networl-cidr="docker network inspect $(docker network ls | awk '$3 == "bridge" { print $1}') | jq -r '.[] | .Name + " " + .IPAM.Config[0].Subnet' -"
 
 # Stupid Alias
 alias vin="vim"
