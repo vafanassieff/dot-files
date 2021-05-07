@@ -84,5 +84,9 @@
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
         }
-    ]
+    ],
+    "window.titleBarStyle": "custom",
+    "window.customMenuBarAltFocus": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false
 }
