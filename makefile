@@ -39,3 +39,4 @@ osx: common
 
 linux: common
 	ln -vsf ${PWD}/os/linux/.gitconfig ${HOME}/.gitconfig
+	dconf load /com/gexperts/Tilix/ < ${PWD}/.config/tilix/tilix.dconf
