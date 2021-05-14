@@ -2,22 +2,25 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 source $ZSH/oh-my-zsh.sh
+source ~/.iterm2_shell_integration.zsh
 
 plugins=(git docker encode64 brew)
 
 # Env
 export MAIL42=vafanass@student.42.fr
 export USER42=vafanass
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH=$PATH:~/bin
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=$PATH:$GOPATH/bin
+
 export HOMEBREW_NO_ANALYTICS=1
-export COMPOSE_IGNORE_ORPHANS=True
 
 # Manpage color
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -27,9 +30,6 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 
 # Alias
 alias c='clear'
@@ -143,65 +143,6 @@ function day() {
   date -r $1
 }
 
-function get-gcloud-ssh-alias () {
-	gcloud compute --project $1 instances list --format json > ~/.gcp.tmp
-	COUNT=$(cat ~/.gcp.tmp | jq length)
-	COUNT=`expr $COUNT - 1`
-	a=0
-	ALL_CMD=""
-
-	while [[ $a -le $COUNT ]]
-	do
-		NAME=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].name')
-		IP=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '.[$a].networkInterfaces [0].accessConfigs[0].natIP')
-		echo "Creating alias for" $NAME
-		SSH_CMD=$(cat ~/.gcp.tmp| jq --argjson a "$a" -r -c '"alias ssh-gcp_" + .[$a].name + "=!ssh afa@" + .[$a].networkInterfaces [0].accessConfigs[0].natIP + " -i ~/.ssh/id_omnilink!"' | tr ! \')
-		ALL_CMD="$ALL_CMD$SSH_CMD\n"
-		a=`expr $a + 1`
-	done
-
-	echo $ALL_CMD > ~/.alias/ssh_gcp_$1
-	source ~/.alias/ssh_gcp_$1
-}
-
-function gcloud-ssh-alias () {
-	rm -f ~/.gcp.tmp
-	get-gcloud-ssh-alias "ito-infra"
-	get-gcloud-ssh-alias "market-data-261512"
-	rm -f ~/.gcp.tmp
-	echo Done √
-}
-
-function aws-ssh-alias () {
-	get-aws-ssh-alias "eu-west-3"
-	get-aws-ssh-alias "us-east-1"
-	echo Done √
-}
-
-function get-aws-ssh-alias () {
-	REGION=$1
-	echo "Region is ${REGION}"
-	AWS_DATA=$(aws ec2 describe-instances  --region ${REGION} --query 'Reservations[].Instances[].[Tags[?Key==`Name`] | [0].Value, PublicIpAddress]')
-	COUNT=$(echo $AWS_DATA | jq length)
-	COUNT=`expr $COUNT - 1`
-	a=0
-	ALL_CMD=""
-
-	while [[ $a -le $COUNT ]]
-	do
-		NAME=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][0]')
-		IP=$(echo $AWS_DATA | jq --argjson a "$a" -r -c '.[$a][1]')
-		if [[ ! $IP = "null" ]]; then 
-			echo "Creating alias for" $NAME
-			SSH_CMD="alias ssh-aws-$REGION-$NAME='ssh ubuntu@$IP -i ~/.ssh/aws/ito-${REGION}'"
-			ALL_CMD="$ALL_CMD$SSH_CMD\n"
-		fi
-		a=`expr $a + 1`
-	done
-	echo $ALL_CMD > ~/.alias/ssh_aws_$REGION
-	source ~/.alias/ssh_aws_$REGION
-}
-
 function docker-ip {
 	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 }
@@ -260,10 +201,3 @@ unsetopt share_history
 setopt no_share_history
 unsetopt SHARE_HISTORY
 unsetopt inc_append_history
-
-source ~/.iterm2_shell_integration.zsh
-export PATH="/usr/local/opt/qt/bin:$PATH"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/opt/ruby@2.6/bin:$PATH"
