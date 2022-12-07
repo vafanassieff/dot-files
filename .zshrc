@@ -2,14 +2,16 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 source $ZSH/oh-my-zsh.sh
-source ~/.iterm2_shell_integration.zsh
 
-plugins=(git docker encode64 brew)
+if [ -f "~/.iterm2_shell_integration.zsh" ]; then
+  source ~/.iterm2_shell_integration.zsh
+fi
 
-# Env
-export MAIL42=vafanass@student.42.fr
-export USER42=vafanass
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
+plugins=(git encode64 brew)
+
+# Path
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -19,7 +21,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/qt/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=$PATH:$GOPATH/bin
-
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+export PNPM_HOME="/Users/omnilink/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# Env
+export MAIL42=vafanass@student.42.fr
+export USER42=vafanass
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export HOMEBREW_NO_ANALYTICS=1
 
 # Manpage color
@@ -44,6 +52,7 @@ alias rmdir="rm -r"
 alias port='netstat -tulanp'
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
 alias sshpwd="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+alias ff-work="nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin -P LNMarkets -no-remote > /dev/null 2>&1 &"
 
 # Git related
 alias gs='git status'
@@ -66,8 +75,8 @@ alias gp="git push"
 alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
 alias dc="docker-compose"
 alias dc-dev="docker-compose -f docker-compose.dev.yml"
-alias lncli-testnet="docker exec --user lnd -it lnd_testnet lncli --network testnet"
-alias lncli="docker exec --user lnd -it lnd lncli"
+alias lncli-testnet="docker exec --user satoshi -it lnd_testnet lncli --network testnet"
+alias lncli="docker exec --user satoshi -it lnd lncli"
 alias transmission-remote="docker exec -it transmission transmission-remote"
 alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest -s cpu -a"
 alias docker-networl-cidr="docker network inspect $(docker network ls | awk '$3 == "bridge" { print $1}') | jq -r '.[] | .Name + " " + .IPAM.Config[0].Subnet' -"
@@ -111,24 +120,12 @@ function b64decode {
 	echo $1 | base64 --decode
 }
 
-function gen-pwd {
-	echo $1
-	if [ -n "$1" ];then
-		SIZE=$1
-	fi
-	openssl rand -base64 32 | tr -d "=+/" | cut -c1-${SIZE}
-}
-
 function gitm() {
 	git commit -m "$1"
 }
 
 function my-ip() {
   curl http://www.ip-api.com/json/ | jq
-}
-
-function traefik-pwd() {
-  htpasswd -nb $1 $2 | sed -e s/\\$/\\$\\$/g
 }
 
 function dayms() {
@@ -147,29 +144,10 @@ function docker-ip {
 	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 }
 
-function docker-reset-logf () {
-	if [ -z "$1"];then
-  	echo "" > $(docker inspect --format='{{.LogPath}}' $1)
-	fi
-}
-
-function dex-fn {
-	docker exec -it $1 /bin/bash
-}
-
 function gdrive_download () {
   CONFIRM=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$1" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
   wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$CONFIRM&id=$1" -O $2
   rm -rf /tmp/cookies.txt
-}
-
-function delete-osx-useless {
-	if [$(uname) != "Darwin"]; then
-		find . -name '._*' -type f
-		find . -name '._*' -type f -delete
-		find . -name '.DS_Store' -type f
-		find . -name '.DS_Store' -type f -delete
-	fi
 }
 
 function extract () {
@@ -201,3 +179,9 @@ unsetopt share_history
 setopt no_share_history
 unsetopt SHARE_HISTORY
 unsetopt inc_append_history
+
+# pnpm
+export PNPM_HOME="/Users/omnilink/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+

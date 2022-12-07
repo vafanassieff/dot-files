@@ -7,6 +7,7 @@
         s = status -s
         branches = branch -a
         amend = commit --amend --reuse-message=HEAD
+	conflicts = !git ls-files -u | cut -f 2 | sort -u
 
 [apply]
 
@@ -33,4 +34,4 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /usr/local/MacGPG2/bin/gpg
