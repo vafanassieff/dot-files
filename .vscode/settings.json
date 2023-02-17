@@ -1,18 +1,13 @@
 {
-  "42header.username": "vafanass",
-  "42header.email": "vafanass@student.42.fr",
   "workbench.colorTheme": "Monokai Dimmed",
   "extensions.ignoreRecommendations": false,
   "files.insertFinalNewline": true,
   "editor.rulers": [80],
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "workbench.statusBar.feedback.visible": false,
   "gitlens.advanced.messages": {
-    "suppressLineUncommittedWarning": true,
-    "suppressShowKeyBindingsNotice": true
+    "suppressLineUncommittedWarning": true
   },
-
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -20,47 +15,16 @@
   "[yaml]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  "solidity.linter": "solium",
-  "solidity.soliumRules": {
-    "quotes": ["error", "double"],
-    "indentation": ["error", 2]
-  },
-  "solidity.compileUsingRemoteVersion": "0.4.24+commit.e67f0147.Emscripten.clang",
-  "solidity.compileUsingLocalVersion": "/usr/local/bin/solcjs",
-
-  "python.linting.pycodestyleEnabled": true,
-  "python.linting.pylintPath": "/path/to/virtualenv/bin/pylint",
-  "python.linting.pylintArgs": [
-    "--load-plugins",
-    "--max-line-length=200",
-    "pylint_django"
-  ],
-  "python.linting.pylintEnabled": true,
-  "python.linting.pycodestyleArgs": ["--max-line-length=120"],
   "javascript.updateImportsOnFileMove.enabled": "never",
   "editor.fontSize": 11,
   "workbench.iconTheme": "material-icon-theme",
-  "C_Cpp.updateChannel": "Insiders",
   "editor.formatOnPaste": true,
   "[vue]": {
     "editor.tabSize": 2
   },
-  "vsicons.dontShowNewVersionMessage": true,
-  "terraform.indexing": {
-    "enabled": true,
-    "liveIndexing": false,
-    "delay": 500,
-    "exclude": [".terraform/**/*", "**/.terraform/**/*"]
-  },
-  "terraform.languageServer": {
-    "enabled": false,
-    "args": []
-  },
-  "[terraform]": {},
-  "gslang.author": "omnilink",
   "editor.minimap.enabled": false,
   "[css]": {
     "editor.tabSize": 2,
@@ -68,43 +32,47 @@
   },
   "workbench.enableExperiments": false,
   "editor.formatOnSave": true,
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
   "window.titleBarStyle": "custom",
-  "window.customMenuBarAltFocus": false,
-  "telemetry.enableTelemetry": false,
-  "telemetry.enableCrashReporter": false,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.untitled.hint": "hidden",
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "aws.profile": "profile:default",
-  "aws.sam.enableCodeLenses": false,
   "json.schemas": [],
   "editor.autoClosingBrackets": "always",
   "redhat.telemetry.enabled": false,
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "terminal.integrated.fontSize": 13,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   },
-  "ansible.ansibleLint.enabled": false,
-  "git.autofetch": true,
+  "eslint.validate": ["javascript"],
+  "diffEditor.ignoreTrimWhitespace": false,
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "volar.codeLens.scriptSetupTools": true,
-  "volar.completion.preferredAttrNameCase": "kebab",
-  "volar.completion.preferredTagNameCase": "kebab",
-  "volar.vueserver.useSecondServer": true,
-  "workbench.editor.splitInGroupLayout": "vertical",
-  "gitlens.hovers.currentLine.over": "line",
   "git.mergeEditor": false,
   "editor.inlineSuggest.enabled": true,
-  "gitlens.codeLens.enabled": false,
   "github.copilot.enable": {
     "*": true,
-    "yaml": false,
-    "plaintext": true,
-    "markdown": false
-  }
+    "yaml": true,
+    "plaintext": false,
+    "markdown": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "editor.wordWrap": "on",
+  "diffEditor.wordWrap": "on",
+  "git.autofetch": true,
+  "git.path": "/usr/local/bin/git",
+  "gitlens.currentLine.scrollable": false,
+  "gitlens.hovers.currentLine.enabled": false,
+  "gitlens.blame.highlight.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.worktrees.defaultLocation": ""
 }

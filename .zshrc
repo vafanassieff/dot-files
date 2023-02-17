@@ -1,3 +1,13 @@
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=1000
+
+setopt appendhistory
+setopt no_share_history
+unsetopt share_history
 
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
@@ -7,26 +17,17 @@ if [ -f "~/.iterm2_shell_integration.zsh" ]; then
   source ~/.iterm2_shell_integration.zsh
 fi
 
-plugins=(git encode64 brew)
+plugins=(git brew)
 
 # Path
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/bin
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH=$PATH:$GOPATH/bin
-export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PNPM_HOME="/Users/omnilink/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # Env
-export MAIL42=vafanass@student.42.fr
-export USER42=vafanass
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export HOMEBREW_NO_ANALYTICS=1
 
@@ -45,14 +46,10 @@ alias ll='ls -la'
 alias zconf='vim ~/.zshrc'
 alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias git-update-submodule="git submodule foreach git pull origin master"
 alias tf="terraform"
-alias tf-init="terraform init -plugin-dir ~/.terraform.d/plugin-cache/darwin_amd64 "
 alias rmdir="rm -r"
-alias port='netstat -tulanp'
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
 alias sshpwd="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
-alias ff-work="nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin -P LNMarkets -no-remote > /dev/null 2>&1 &"
 
 # Git related
 alias gs='git status'
@@ -72,34 +69,14 @@ alias grm='git rm'
 alias gp="git push"
 
 # Docker Alias
-alias docker-ls="docker container ls --format='table {{.Names}}\t{{.ID}}\t{{.Image}}'"
-alias dc="docker-compose"
-alias dc-dev="docker-compose -f docker-compose.dev.yml"
 alias lncli-testnet="docker exec --user satoshi -it lnd_testnet lncli --network testnet"
 alias lncli="docker exec --user satoshi -it lnd lncli"
-alias transmission-remote="docker exec -it transmission transmission-remote"
-alias ctop="docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.sock:ro quay.io/vektorlab/ctop:latest -s cpu -a"
-alias docker-networl-cidr="docker network inspect $(docker network ls | awk '$3 == "bridge" { print $1}') | jq -r '.[] | .Name + " " + .IPAM.Config[0].Subnet' -"
+alias dc="docker compose"
 
 # Stupid Alias
 alias vin="vim"
 alias docket="docker"
 alias giut="git"
-
-for f in ~/.alias/*; do source $f; done
-
-case "$OSTYPE" in
-   cygwin*)
-      alias open="cmd /c start"
-      ;;
-   linux*)
-      alias start="xdg-open"
-      alias open="xdg-open"
-      ;;
-   darwin*)
-      alias start="open"
-      ;;
-esac
 
 ## Functions
 function clear_history {
@@ -109,45 +86,6 @@ function clear_history {
 function stream-twitch() {
 	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" \
 	--hls-segment-threads 2 https://www.twitch.tv/$1 best
-}
-
-function cdls() {
-	cd "$1";
-	ls;
-}
-
-function b64decode {
-	echo $1 | base64 --decode
-}
-
-function gitm() {
-	git commit -m "$1"
-}
-
-function my-ip() {
-  curl http://www.ip-api.com/json/ | jq
-}
-
-function dayms() {
-  date -r $(($1 / 1000))
-  }
-
-function dayus() {
-  date -r $(($1 / 1000000))
-  }
-
-function day() {
-  date -r $1
-}
-
-function docker-ip {
-	docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
-}
-
-function gdrive_download () {
-  CONFIRM=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$1" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
-  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$CONFIRM&id=$1" -O $2
-  rm -rf /tmp/cookies.txt
 }
 
 function extract () {
@@ -174,14 +112,3 @@ function extract () {
 function rm-ssh-host () {
 	sed -i '' -e "$1d" ~/.ssh/known_hosts
 }
-
-unsetopt share_history
-setopt no_share_history
-unsetopt SHARE_HISTORY
-unsetopt inc_append_history
-
-# pnpm
-export PNPM_HOME="/Users/omnilink/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
