@@ -95,3 +95,5 @@ function rm-ssh-host () {
 
 unsetopt inc_append_history
 unsetopt share_history
+
+eval "$(fnm env --use-on-cd)"
