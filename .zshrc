@@ -2,34 +2,30 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=1000
-
-setopt appendhistory
-setopt no_share_history
-unsetopt share_history
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="omnilink"
 source $ZSH/oh-my-zsh.sh
+plugins=(git brew docker extract)
 
-if [ -f "~/.iterm2_shell_integration.zsh" ]; then
-  source ~/.iterm2_shell_integration.zsh
+if [ -f "~/.macos/.iterm2_shell_integration.zsh" ]; then
+  source ~/.macos/.iterm2_shell_integration.zsh
 fi
 
-plugins=(git brew)
+if [ -f "~/.macos/.zshrc" ]; then
+  source ~/.macos/.zshrc
+fi
 
 # Path
-export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PNPM_HOME="/Users/omnilink/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export PATH="$HOME/bin:$PATH"
 
 # Env
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export HOMEBREW_NO_ANALYTICS=1
+export GPG_TTY=$(tty)
 
 # Manpage color
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -39,6 +35,10 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+# pnpm
+export PNPM_HOME="/Users/afa/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # Alias
 alias c='clear'
@@ -77,9 +77,10 @@ alias dc="docker compose"
 alias vin="vim"
 alias docket="docker"
 alias giut="git"
+alias rm="rm -I"
 
 ## Functions
-function clear_history {
+function clear-history {
 	local HISTSIZE=0;
 }
 
@@ -88,27 +89,9 @@ function stream-twitch() {
 	--hls-segment-threads 2 https://www.twitch.tv/$1 best
 }
 
-function extract () {
-   if [ -f $1 ] ; then
-       case $1 in
-           *.tar.bz2)   tar xvjf $1    ;;
-           *.tar.gz)    tar xvzf $1    ;;
-           *.bz2)       bunzip2 $1     ;;
-           *.rar)       unrar x $1       ;;
-           *.gz)        gunzip $1      ;;
-           *.tar)       tar xvf $1     ;;
-           *.tbz2)      tar xvjf $1    ;;
-           *.tgz)       tar xvzf $1    ;;
-           *.zip)       unzip $1       ;;
-           *.Z)         uncompress $1  ;;
-           *.7z)        7z x $1        ;;
-           *)           echo "don't know how to extract '$1'..." ;;
-       esac
-   else
-       echo "'$1' is not a valid file!"
-   fi
- }
-
 function rm-ssh-host () {
 	sed -i '' -e "$1d" ~/.ssh/known_hosts
 }
+
+unsetopt inc_append_history
+unsetopt share_history
