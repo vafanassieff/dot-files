@@ -32,8 +32,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # pnpm
-export PNPM_HOME="/Users/afa/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 
 # Alias
 alias c='clear'
@@ -52,23 +50,5 @@ alias docket="docker"
 alias giut="git"
 alias rm="rm -I"
 
-## Functions
-function clear-history {
-	local HISTSIZE=0;
-}
-
-function stream-twitch() {
-	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" \
-	--hls-segment-threads 2 https://www.twitch.tv/$1 best
-}
-
-function rm-ssh-host () {
-	sed -i '' -e "$1d" ~/.ssh/known_hosts
-}
-
 unsetopt inc_append_history
 unsetopt share_history
-
-eval "$(fnm env --use-on-cd)"
-eval "$(atuin init zsh)"
-
