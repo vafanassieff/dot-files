@@ -27,7 +27,7 @@
 [http]
         sslVerify = true
 [core]
-        editor = vim
+	editor = cursor --wait
 
 [help]
 	autocorrect = 1
@@ -35,3 +35,7 @@
 	gpgsign = true
 [gpg]
 	program = /opt/homebrew/bin/gpg
+[advice]
+	pushNonFastForward = false
+[push]
+	autoSetupRemote = true

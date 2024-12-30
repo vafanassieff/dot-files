@@ -6,21 +6,16 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="omnilink"
+ZSH_THEME="robbyrussell"
+plugins=(git docker encode64 zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat)
 source $ZSH/oh-my-zsh.sh
-plugins=(git brew docker extract)
-
-if [ -f "~/.macos/.iterm2_shell_integration.zsh" ]; then
-  source ~/.macos/.iterm2_shell_integration.zsh
-fi
-
-if [ -f "~/.macos/.zshrc" ]; then
-  source ~/.macos/.zshrc
-fi
 
 # Path
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export SOPS_AGE_KEY_FILE="$HOME/.age/key"
+
+export EDITOR="cursor --wait"
 
 # Env
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -43,35 +38,13 @@ export PATH="$PNPM_HOME:$PATH"
 # Alias
 alias c='clear'
 alias ll='ls -la'
-alias zconf='vim ~/.zshrc'
-alias vconf='vim ~/.vimrc'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias tf="terraform"
-alias rmdir="rm -r"
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
 alias sshpwd="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
-
-# Git related
-alias gs='git status'
-alias gc='git commit'
-alias ga='git add'
-alias gd='git diff'
-alias gb='git branch'
-alias gl='git log'
-alias gsb='git show-branch'
-alias gco='git checkout'
-alias gg='git grep'
-alias gk='gitk --all'
-alias gr='git rebase'
-alias gri='git rebase --interactive'
-alias gcp='git cherry-pick'
-alias grm='git rm'
-alias gp="git push"
-
-# Docker Alias
-alias lncli-testnet="docker exec --user satoshi -it lnd_testnet lncli --network testnet"
-alias lncli="docker exec --user satoshi -it lnd lncli"
+alias cp="rsync --archive --progress --human-readable --info=progress2"
+alias cat="bat"
 alias dc="docker compose"
+alias dps='docker ps --format "table {{.Names}}\t{{.RunningFor}}\t{{.Status}}"'
 
 # Stupid Alias
 alias vin="vim"
@@ -97,3 +70,5 @@ unsetopt inc_append_history
 unsetopt share_history
 
 eval "$(fnm env --use-on-cd)"
+eval "$(atuin init zsh)"
+
