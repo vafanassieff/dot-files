@@ -18,6 +18,14 @@ if [ "$OS" == "Linux" ]; then
   ln -vsf $PWD/linux/.gitconfig $HOME/.gitconfig
 fi
 
+ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
+
+# Setup vim
+rm -rf $HOME/.vimrc
+ln -vsf $PWD/.vimrc $HOME/.vimrc
+mkdir -p $HOME/.vim
+ln -vsf $PWD/.vim/colors $HOME/.vim/colors
+
 mkdir -p "$HOME/.config/fish"
 ln -vsf $PWD/config.fish "$HOME/.config/fish/config.fish"
 
@@ -28,20 +36,11 @@ fi
 
 # https://github.com/jorgebucaran/fisher
 if ! command -v fisher &> /dev/null; then
-  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+  exec fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fi
 
 # https://github.com/jhillyerd/plugin-git
-fisher install jhillyerd/plugin-git
-fisher install jethrokuan/z
-fisher install laughedelic/pisces
-fisher install gazorby/fish-abbreviation-tips\
-
-ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
-
-# Setup vim
-rm -rf $HOME/.vimrc
-ln -vsf $PWD/.vimrc $HOME/.vimrc
-mkdir -p $HOME/.vim
-ln -vsf $PWD/.vim/colors $HOME/.vim/colors
-
+exec fish -c "fisher install jhillyerd/plugin-git"
+exec fish -c "fisher install jethrokuan/z"
+exec fish -c "fisher install laughedelic/pisces"
+exec fish -c "fisher install gazorby/fish-abbreviation-tips"
