@@ -20,7 +20,9 @@ set -x GPG_TTY (tty)
 starship init fish | source
 fnm env --use-on-cd --shell fish | source
 
-set -gx PNPM_HOME "/home/afa/.local/share/pnpm"
+if string match -q -- "Linux" (uname)
+  set -gx PNPM_HOME "/home/afa/.local/share/pnpm"
+end
 
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
