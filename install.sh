@@ -16,6 +16,9 @@ fi
 if [ "$OS" == "Linux" ]; then
   rm -rf $HOME/.gitconfig
   ln -vsf $PWD/linux/.gitconfig $HOME/.gitconfig
+
+  curl -sS https://starship.rs/install.sh | sh
+  sudo apt-get install -y rsync bat lsd fish git age jq wget htop
 fi
 
 ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
