@@ -17,11 +17,24 @@ if [ "$OS" == "Linux" ]; then
   rm -rf $HOME/.gitconfig
   ln -vsf $PWD/linux/.gitconfig $HOME/.gitconfig
 
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
-  curl -fsSL https://fnm.vercel.app/install | bash
-  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-  curl -sS https://starship.rs/install.sh | sh
+  if ! command -v pnpm &> /dev/null; then
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
+  fi
+
+  if ! command -v fnm &> /dev/null; then
+    curl -fsSL https://fnm.vercel.app/install | bash
+  fi
+
+  if ! command -v atuin &> /dev/null; then
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+  fi
+
+  if ! command -v starship &> /dev/null; then
+    curl -sS https://starship.rs/install.sh | sh
+  fi
+
   sudo apt-get install -y rsync bat lsd fish git age jq wget htop
+  
   sudo ln -vsf /usr/bin/batcat /usr/local/bin/bat
 fi
 
