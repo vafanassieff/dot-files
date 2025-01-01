@@ -1,0 +1,6 @@
+clipboard-read = allow
+clipboard-write = allow
+macos-titlebar-style = tabs
+term = xterm
+font-family = GeistMono Nerd Font Mono
+shell-integration = fish

@@ -52,3 +52,30 @@ alias rm="rm -I"
 
 unsetopt inc_append_history
 unsetopt share_history
+
+function stream-twitch() {
+	streamlink --player="/Applications/VLC.app/Contents/MacOS/VLC --file-caching 10000 --network-caching 10000" \
+	--hls-segment-threads 2 https://www.twitch.tv/$1 best
+}
+
+function rm-ssh-host () {
+	sed -i '' -e "$1d" ~/.ssh/known_hosts
+}
+
+eval "$(fnm env --use-on-cd)"
+eval "$(atuin init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/afa/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# fnm
+FNM_PATH="/Users/afa/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/afa/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
+fi

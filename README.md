@@ -1,15 +1,13 @@
 # dot-file
 
-Dot file !
+My dot dot files and configs.
+
+For macOS and linux.
+
 Feel free to take some parts.
 
-## Cool stuff
+## Issues
 
-https://github.com/samuelmeuli/tmignore
+### `asimov`
 
-Exclude node_modules from timemachine
-find `pwd` -name 'node_modules' -prune -type d -exec tmutil addexclusion {} \; -exec tmutil isexcluded {} \;
-
-## Helpers
-
-- Alt + left = [D -> https://apple.stackexchange.com/questions/136928/using-alt-cmd-right-left-arrow-in-iterm
+- [Error: Failure while executing; `/bin/launchctl bootstrap system /Library/LaunchDaemons/homebrew.mxcl.asimov.plist` exited with 5](https://github.com/stevegrunwell/asimov/issues/96)
