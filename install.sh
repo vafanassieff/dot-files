@@ -37,7 +37,7 @@ fisher install jethrokuan/z
 fisher install laughedelic/pisces
 fisher install gazorby/fish-abbreviation-tips\
 
-starship preset pure-preset -o ~/.config/starship.toml
+ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
 
 # Setup vim
 rm -rf $HOME/.vimrc
