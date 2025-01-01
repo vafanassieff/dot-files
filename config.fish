@@ -4,19 +4,21 @@ if status is-interactive
   atuin init fish | source
 end
 
-starship init fish | source
-fnm env --use-on-cd --shell fish | source
-
 # Disable greeting
 set fish_greeting
 
 set -x LANG en_US.UTF-8
 set -x PATH $HOME/.cargo/bin $PATH
-set -x PATH $HOME/bin $PATH
+set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.local/share/fnm $PATH
+set -x PATH $HOME/.atuin/bin $PATH
 set -x SOPS_AGE_KEY_FILE $HOME/.age/key
 set -x EDITOR "cursor --wait"
 set -x HOMEBREW_NO_ANALYTICS 1
 set -x GPG_TTY (tty)
+
+starship init fish | source
+fnm env --use-on-cd --shell fish | source
 
 # Alias
 alias cat='bat'

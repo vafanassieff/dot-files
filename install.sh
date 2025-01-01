@@ -17,8 +17,12 @@ if [ "$OS" == "Linux" ]; then
   rm -rf $HOME/.gitconfig
   ln -vsf $PWD/linux/.gitconfig $HOME/.gitconfig
 
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+  curl -fsSL https://fnm.vercel.app/install | bash
+  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
   curl -sS https://starship.rs/install.sh | sh
   sudo apt-get install -y rsync bat lsd fish git age jq wget htop
+  sudo ln -vsf /usr/bin/batcat /usr/local/bin/bat
 fi
 
 ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
@@ -26,7 +30,7 @@ ln -vsf $PWD/starship.toml $HOME/.config/starship.toml
 # Setup vim
 rm -rf $HOME/.vimrc
 ln -vsf $PWD/.vimrc $HOME/.vimrc
-mkdir -p $HOME/.vim
+mkdir -p $HOME/.vim 
 ln -vsf $PWD/.vim/colors $HOME/.vim/colors
 
 mkdir -p "$HOME/.config/fish"
