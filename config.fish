@@ -38,9 +38,13 @@ alias sshpwd='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=n
 alias cp='rsync --archive --progress --human-readable --info=progress2'
 alias dc='docker compose'
 alias dps='docker ps --format "table {{.Names}}\t{{.RunningFor}}\t{{.Status}}"'
-
-# Stupid Alias
-alias vin='vim'
-alias docket='docker'
-alias giut='git'
+alias "..."='cd ../..'
+alias "...."='cd ../../..'
+alias "....."='cd ../../../..'
 alias rm='rm -I'
+alias yarn="corepack yarn"
+alias yarnpkg="corepack yarnpkg"
+alias pnpm="corepack pnpm"
+alias pnpx="corepack pnpx"
+alias npm="corepack npm"
+alias npx="corepack npx"

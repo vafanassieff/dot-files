@@ -23,6 +23,7 @@ brew "jq"
 brew "llvm"
 brew "lsd"
 brew "md5sha1sum"
+brew "node"
 brew "opentofu"
 brew "pinentry-mac"
 brew "postgresql@16", link: true
