@@ -1,41 +1,47 @@
 [alias]
-        # From https://github.com/jessfraz/dotfiles/blob/master/.gitconfig
-        # View abbreviated SHA, description, and history graph of the latest 20 commits
-        l = log --pretty=oneline -n 20 --graph --abbrev-commit
+# From https://github.com/jessfraz/dotfiles/blob/master/.gitconfig
+# View abbreviated SHA, description, and history graph of the latest 20 commits
+l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
-        # View the current working tree status using the short format
-        s = status -s
-        branches = branch -a
-        amend = commit --amend --reuse-message=HEAD
-	conflicts = !git ls-files -u | cut -f 2 | sort -u
+# View the current working tree status using the short format
+s = status -s
+branches = branch -a
+amend = commit --amend --reuse-message=HEAD
+conflicts = !git ls-files -u | cut -f 2 | sort -u
 
 [apply]
-
-        # Detect whitespace errors when applying a patch
-        whitespace = fix
+# Detect whitespace errors when applying a patch
+whitespace = fix
 
 [filter "lfs"]
-        clean = git-lfs clean %f
-        smudge = git-lfs smudge %f
-        required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+required = true
+process = git-lfs filter-process
 [user]
-        name = Victor Afanassieff
-        email = victor@afanassieff.com
-	signingkey = 72C20E245B3DB421
+name = Victor Afanassieff
+email = victor@afanassieff.com
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuKqJf8l+LQTl0NpSBuT9Ln7b7LRH4zxAJRgP9BUPpG
 [credential]
-        helper = osxkeychain
+helper = osxkeychain
 [http]
-        sslVerify = true
+sslVerify = true
 [core]
-	editor = cursor --wait
+quotepath = false
 
 [help]
-	autocorrect = 1
+autocorrect = 1
 [commit]
-	gpgsign = true
+gpgsign = true
 [gpg]
-	program = /opt/homebrew/bin/gpg
+program = /opt/homebrew/bin/gpg
+format = ssh
 [advice]
-	pushNonFastForward = false
+pushNonFastForward = false
 [push]
-	autoSetupRemote = true
+autoSetupRemote = true
+[i18n]
+commitEncoding = utf-8
+logOutputEncoding = utf-8
+[gpg "ssh"]
+allowedSignersFile = /Users/afa/.ssh/allowed_signers

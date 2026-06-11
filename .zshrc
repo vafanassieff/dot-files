@@ -1,4 +1,4 @@
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export HISTFILE=~/.zsh_history
@@ -37,7 +37,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 alias c='clear'
 alias ll='ls -la'
 alias zshsource="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'"
 alias sshpwd="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 alias cp="rsync --archive --progress --human-readable --info=progress2"
 alias cat="bat"
@@ -48,7 +48,6 @@ alias dps='docker ps --format "table {{.Names}}\t{{.RunningFor}}\t{{.Status}}"'
 alias vin="vim"
 alias docket="docker"
 alias giut="git"
-alias rm="rm -I"
 
 unsetopt inc_append_history
 unsetopt share_history
@@ -73,9 +72,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# fnm
-FNM_PATH="/Users/afa/Library/Application Support/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/afa/Library/Application Support/fnm:$PATH"
-  eval "`fnm env`"
-fi
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

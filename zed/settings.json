@@ -1,0 +1,98 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "autosave": "on_focus_change",
+  "cli_default_open_behavior": "new_window",
+  "diff_view_style": "split",
+  "auto_install_extensions": {
+    "astro": true,
+    "color-highlight": true,
+    "cspell": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "html": true,
+    "lua": true,
+    "material-icon-theme": true,
+    "oxc": true,
+    "sql": true,
+    "terraform": true,
+    "toml": true,
+    "tsgo": true
+  },
+  "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "disabled_globs": ["*.env", "*.sops.json"],
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": false,
+    "show": true,
+  },
+  "tab_size": 2,
+  "ui_font_family": ".SystemUIFont",
+  "buffer_line_height": "standard",
+  "buffer_font_family": "Menlo",
+  // Where is the matching bracket
+  "experimental.theme_overrides": {
+    "editor.document_highlight.bracket_background": "#ffe1004d",
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme"
+  },
+  "toolbar": {
+    "code_actions": true,
+    "breadcrumbs": true,
+    "quick_actions": true,
+  },
+  "scroll_beyond_last_line": "off",
+  "minimap": {
+    "show": "never",
+  },
+  "use_system_window_tabs": true,
+  "ui_font_size": 13,
+  "ui_font_fallbacks": ["FiraCode Nerd Font Mono"],
+  "buffer_font_size": 12,
+  "buffer_font_fallbacks": ["FiraCode Nerd Font Mono"],
+  "terminal": {
+    "font_family": "Menlo",
+    "font_size": 12,
+    "env": {
+      "LANG": "en_US.UTF-8",
+      "LC_ALL": "en_US.UTF-8",
+    },
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "afa-dark"
+  },
+}

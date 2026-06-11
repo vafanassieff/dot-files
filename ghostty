@@ -1,6 +1,8 @@
 clipboard-read = allow
 clipboard-write = allow
 macos-titlebar-style = tabs
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 term = xterm
 font-family = GeistMono Nerd Font Mono
 shell-integration = fish
+keybind = shift+enter=text:\x1b\r

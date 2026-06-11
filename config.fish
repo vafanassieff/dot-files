@@ -25,8 +25,6 @@ set -U ABBR_TIPS_PROMPT '\n→ \e[1m{{ .abbr }}\e[0m => {{ .cmd }}'
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.atuin/bin $PATH
-set -x SOPS_AGE_KEY_FILE $HOME/.age/key
-set -x SOPS_AGE_SSH_PRIVATE_KEY_FILE $HOME/.ssh/id_victor
 set -x EDITOR "zed --wait"
 set -x HOMEBREW_NO_ANALYTICS 1
 set -x GPG_TTY (tty)
