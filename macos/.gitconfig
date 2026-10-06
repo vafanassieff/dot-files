@@ -34,14 +34,17 @@ autocorrect = 1
 [commit]
 gpgsign = true
 [gpg]
-program = /opt/homebrew/bin/gpg
 format = ssh
 [advice]
 pushNonFastForward = false
 [push]
-autoSetupRemote = true
+	autoSetupRemote = true
 [i18n]
 commitEncoding = utf-8
 logOutputEncoding = utf-8
 [gpg "ssh"]
 allowedSignersFile = /Users/afa/.ssh/allowed_signers
+[maintenance]
+	repo = /Users/afa/code/ln-markets/ln-markets
+[branch]
+	autoSetupMerge = simple
