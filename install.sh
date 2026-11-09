@@ -63,11 +63,6 @@ ln -vsf $PWD/.zshenv $HOME/.zshenv
 ln -vsf $PWD/.bashrc $HOME/.bashrc
 ln -vsf $PWD/.profile $HOME/.profile
 
-# Setup agent instructions (claude + codex)
-mkdir -p "$HOME/.claude" "$HOME/.codex"
-ln -vsf $PWD/agents/CLAUDE.md "$HOME/.claude/CLAUDE.md"
-ln -vsf $PWD/agents/AGENTS.md "$HOME/.codex/AGENTS.md"
-
 # Setup misc config
 mkdir -p "$HOME/.config/git" "$HOME/.config/lf" "$HOME/.config/direnv" "$HOME/.config/atuin"
 ln -vsf $PWD/git/ignore "$HOME/.config/git/ignore"
