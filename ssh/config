@@ -1,0 +1,13 @@
+# Homebrew's OpenSSH doesn't know Apple's UseKeychain; skip it instead of failing.
+IgnoreUnknown UseKeychain
+
+Include ~/.orbstack/ssh/config
+
+Match exec "/bin/sh -c 'SSH_AUTH_SOCK=%d/.ssh/yk-touch.sock /opt/homebrew/bin/ssh-add -l >/dev/null 2>&1; test $? -ne 2'"
+  IdentityAgent ~/.ssh/yk-touch.sock
+Host *
+  IdentityAgent ~/.ssh/yk-agent.sock
+  IdentityFile ~/.ssh/yk1.pub
+  IdentityFile ~/.ssh/yk2.pub
+  IdentityFile ~/.ssh/yk3.pub
+  IdentitiesOnly yes

@@ -9,6 +9,9 @@ if [ "$OS" == "Darwin" ]; then
   ln -vsf $PWD/macos/.gitconfig $HOME/.gitconfig
   brew bundle --file=$PWD/macos/Brewfile
 
+  mkdir -p "$HOME/.ssh"
+  ln -vsf $PWD/ssh/config "$HOME/.ssh/config"
+
   mkdir -p "$HOME/Library/Application Support/com.mitchellh.ghostty"
   ln -vsf $PWD/ghostty "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 fi
@@ -59,6 +62,11 @@ ln -vsf $PWD/.zprofile $HOME/.zprofile
 ln -vsf $PWD/.zshenv $HOME/.zshenv
 ln -vsf $PWD/.bashrc $HOME/.bashrc
 ln -vsf $PWD/.profile $HOME/.profile
+
+# Setup agent instructions (claude + codex)
+mkdir -p "$HOME/.claude" "$HOME/.codex"
+ln -vsf $PWD/agents/CLAUDE.md "$HOME/.claude/CLAUDE.md"
+ln -vsf $PWD/agents/AGENTS.md "$HOME/.codex/AGENTS.md"
 
 # Setup misc config
 mkdir -p "$HOME/.config/git" "$HOME/.config/lf" "$HOME/.config/direnv" "$HOME/.config/atuin"

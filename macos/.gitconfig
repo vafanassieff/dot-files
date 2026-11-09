@@ -21,13 +21,13 @@ process = git-lfs filter-process
 [user]
 name = Victor Afanassieff
 email = victor@afanassieff.com
-signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuKqJf8l+LQTl0NpSBuT9Ln7b7LRH4zxAJRgP9BUPpG
 [credential]
 helper = osxkeychain
 [http]
 sslVerify = true
 [core]
 quotepath = false
+	sshCommand = /opt/homebrew/bin/ssh
 
 [help]
 autocorrect = 1
@@ -43,8 +43,12 @@ pushNonFastForward = false
 commitEncoding = utf-8
 logOutputEncoding = utf-8
 [gpg "ssh"]
-allowedSignersFile = /Users/afa/.ssh/allowed_signers
+	allowedSignersFile = /Users/afa/.ssh/allowed_signers
+	program = /Users/afa/.ssh/yk-sign
+	defaultKeyCommand = /Users/afa/.ssh/yk-signingkey
 [maintenance]
 	repo = /Users/afa/code/ln-markets/ln-markets
 [branch]
 	autoSetupMerge = simple
+[tag]
+	gpgsign = true

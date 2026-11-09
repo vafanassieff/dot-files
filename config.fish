@@ -25,7 +25,12 @@ set -U ABBR_TIPS_PROMPT '\n→ \e[1m{{ .abbr }}\e[0m => {{ .cmd }}'
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.atuin/bin $PATH
+set -x SOPS_AGE_KEY_FILE $HOME/.age/key
 set -x EDITOR "zed --wait"
+# From a Zed terminal, open sops files in the same window instead of a new one
+if set -q ZED_TERM
+  set -x SOPS_EDITOR "zed --wait --add"
+end
 set -x HOMEBREW_NO_ANALYTICS 1
 set -x GPG_TTY (tty)
 set -gx DIRENV_LOG_FORMAT ""
